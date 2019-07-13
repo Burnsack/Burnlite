@@ -7,7 +7,7 @@ import net.runelite.client.plugins.util.*;
 
 @ConfigGroup("easyswap")
 public interface EasySwapConfig extends Config {
-
+//test
 
     @ConfigItem(
             keyName = "swapSmithing",
