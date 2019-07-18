@@ -24,6 +24,10 @@ import net.runelite.api.MenuEntry;
 
 import javax.inject.Inject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static net.runelite.api.ObjectID.PORTAL_4525;
 
 @PluginDescriptor(
@@ -276,20 +280,17 @@ public class EasySwapPlugin extends Plugin {
 
         if(shiftModifier){
 
-            if (config.getTradewith()) {
-                if (option.equalsIgnoreCase("follow")) {
-                    MenuEntry[] entries = swapper.getEntries();
-                    MenuEntry examine = new MenuEntry();
-                    for (MenuEntry x : entries) {
-                        if (x.getOption().equalsIgnoreCase("trade with")) {
-                            examine = x;
-                        }
+            if (config.getTradewith() && option.equalsIgnoreCase("follow")) {
+                List<MenuEntry> tradeFix = new ArrayList<>();
+                MenuEntry[] menuEntries = swapper.getEntries();
+                int i = 0;
+                for (MenuEntry m : menuEntries) {
+                    if (m.getOption().contains("Trade")) {
+                        tradeFix.add(m);
                     }
-                    MenuEntry[] tradeFix = {examine};
-                    swapper.setEntries(tradeFix);
                 }
-            }
-        }
+                swapper.setEntries(tradeFix.toArray(new MenuEntry[] {}));
+            }}
         if (config.getDigsite()) {
             if (target.toLowerCase().contains("Digsite pendant") || target.toLowerCase().contains("digsite pendant")) {
                 if(shiftModifier){

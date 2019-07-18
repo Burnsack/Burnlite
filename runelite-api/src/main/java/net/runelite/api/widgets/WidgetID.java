@@ -822,4 +822,16 @@ public class WidgetID
 		static final int MAX_ITEMS_KEPT_ON_DEATH = 30;
 		static final int SAFE_ZONE_CONTAINER = 31;
 	}
+    static class SeedVault
+    {
+        static final int TITLE_CONTAINER = 2;
+    }
+
+    static class TradeScreen
+    {
+        static final int ACCEPT = 12;
+        static final int DECLINE = 15;
+        static final int TRADING_WITH = 31;
+        static final int TRADING_WITH_INVENTORY_SLOTS = 9;
+    }
 }
