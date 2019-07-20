@@ -69,7 +69,11 @@ public class EasyDropPlugin extends Plugin {
         final String option = Text.removeTags(event.getOption()).toLowerCase();
         final String target = Text.removeTags(event.getTarget()).toLowerCase();
 
+        Widget widgetBankTitleBar = client.getWidget(WidgetInfo.BANK_TITLE_BAR);
+
         swapper.setEntries(client.getMenuEntries());
+
+        if (!(widgetBankTitleBar == null) && !widgetBankTitleBar.isHidden()) {
 
         if (config.getUse()) {
             for (String item : config.getNameUse().split(",")) {
@@ -89,8 +93,11 @@ public class EasyDropPlugin extends Plugin {
             }
         }
 
+
+        }
+
         swapper.startSwap();
         client.setMenuEntries(swapper.getEntries());
-}
+    }
 
 }
