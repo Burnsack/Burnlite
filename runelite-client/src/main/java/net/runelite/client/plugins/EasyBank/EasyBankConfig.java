@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.bank1.bank1;
+package net.runelite.client.plugins.EasyBank;
 
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;

@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.bank1.bank1;
+package net.runelite.client.plugins.EasyBank;
 
 import com.google.inject.Provides;
 import lombok.extern.slf4j.Slf4j;
