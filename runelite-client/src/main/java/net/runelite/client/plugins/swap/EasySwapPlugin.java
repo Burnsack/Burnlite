@@ -278,7 +278,7 @@ public class EasySwapPlugin extends Plugin {
             }
         }
 
-        if(shiftModifier){
+        if(shiftToggle){
 
             if (config.getTradewith() && option.equalsIgnoreCase("follow")) {
                 List<MenuEntry> tradeFix = new ArrayList<>();

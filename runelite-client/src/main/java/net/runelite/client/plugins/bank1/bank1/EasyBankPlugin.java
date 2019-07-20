@@ -20,7 +20,7 @@ import javax.inject.Inject;
 
 @PluginDescriptor(
         name = "EasyBank",
-        description = "EasyBank",
+        description = "Choose how you withdraw/deposit from bank",
         tags = {"EasyBank", "easy"},
         enabledByDefault = false
 )
