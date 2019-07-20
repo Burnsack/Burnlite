@@ -15,7 +15,7 @@ public interface EasyDropConfig extends Config {
     )
 
     default boolean getUse() {
-        return true;
+        return false;
     }
 
     @ConfigItem(
@@ -37,7 +37,7 @@ public interface EasyDropConfig extends Config {
     )
 
     default boolean getDrop() {
-        return true;
+        return false;
     }
 
     @ConfigItem(

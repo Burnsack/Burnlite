@@ -75,6 +75,9 @@ public class EasyDropPlugin extends Plugin {
 
         if (!(widgetBankTitleBar == null) && !widgetBankTitleBar.isHidden()) {
 
+            return;
+        }
+
         if (config.getUse()) {
             for (String item : config.getNameUse().split(",")) {
                 item = item.trim();
@@ -91,9 +94,6 @@ public class EasyDropPlugin extends Plugin {
                     swapper.markForSwap("Drop", option, target);
                 }
             }
-        }
-
-
         }
 
         swapper.startSwap();
