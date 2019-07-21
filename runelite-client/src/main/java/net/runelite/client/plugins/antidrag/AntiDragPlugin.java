@@ -28,6 +28,7 @@ import com.google.inject.Provides;
 import java.awt.event.KeyEvent;
 import javax.inject.Inject;
 import net.runelite.api.Client;
+import net.runelite.api.events.ConfigChanged;
 import net.runelite.api.events.FocusChanged;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -37,9 +38,9 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 
 @PluginDescriptor(
-	name = "Shift Anti Drag",
-	description = "Prevent dragging an item for a specified delay",
-	tags = {"antidrag", "delay", "inventory", "items"}
+		name = "Anti Drag",
+		description = "Prevent dragging an item for a specified delay",
+		tags = {"antidrag", "delay", "inventory", "items"}
 )
 public class AntiDragPlugin extends Plugin implements KeyListener
 {
@@ -64,6 +65,11 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	protected void startUp() throws Exception
 	{
 		keyManager.registerKeyListener(this);
+		if (config.alwaysOn()) {
+			client.setInventoryDragDelay(config.dragDelay());
+		} else {
+			client.setInventoryDragDelay(DEFAULT_DELAY);
+		}
 	}
 
 	@Override
@@ -82,7 +88,7 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
-		if (e.getKeyCode() == KeyEvent.VK_SHIFT)
+		if (e.getKeyCode() == KeyEvent.VK_SHIFT || config.alwaysOn())
 		{
 			client.setInventoryDragDelay(config.dragDelay());
 		}
@@ -91,7 +97,7 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
-		if (e.getKeyCode() == KeyEvent.VK_SHIFT)
+		if ((e.getKeyCode() == KeyEvent.VK_SHIFT) && !config.alwaysOn())
 		{
 			client.setInventoryDragDelay(DEFAULT_DELAY);
 		}
@@ -100,8 +106,17 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Subscribe
 	public void onFocusChanged(FocusChanged focusChanged)
 	{
-		if (!focusChanged.isFocused())
+		if ((!focusChanged.isFocused()) && !config.alwaysOn())
 		{
+			client.setInventoryDragDelay(DEFAULT_DELAY);
+		}
+	}
+
+	@Subscribe
+	public void onConfigChanged(ConfigChanged event) {
+		if (config.alwaysOn()) {
+			client.setInventoryDragDelay(config.dragDelay());
+		} else {
 			client.setInventoryDragDelay(DEFAULT_DELAY);
 		}
 	}
