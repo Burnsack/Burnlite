@@ -278,19 +278,44 @@ public class EasySwapPlugin extends Plugin {
             }
         }
 
-        if(shiftToggle){
-
-            if (config.getTradewith() && option.equalsIgnoreCase("follow")) {
-                List<MenuEntry> tradeFix = new ArrayList<>();
-                MenuEntry[] menuEntries = swapper.getEntries();
-                int i = 0;
-                for (MenuEntry m : menuEntries) {
-                    if (m.getOption().contains("Trade")) {
+        if (shiftToggle && config.getTradewith() && option.equalsIgnoreCase("follow"))
+        {
+            List<MenuEntry> tradeFix = new ArrayList<>();
+            MenuEntry[] menuEntries = swapper.getEntries();
+            final ClanMember[] clanMembersArr = client.getClanMembers();
+            if (clanMembersArr == null)
+            {
+                return;
+            }
+            if (clanMembersArr.length == 1)
+            {
+                for (MenuEntry m : menuEntries)
+                {
+                    if (m.getOption().contains("Trade"))
+                    {
                         tradeFix.add(m);
                     }
                 }
-                swapper.setEntries(tradeFix.toArray(new MenuEntry[] {}));
-            }}
+            }
+            for (MenuEntry m : menuEntries)
+            {
+                if (m.getOption().contains("Trade") && m.getTarget() != null && m.getTarget() != "")
+                {
+                    for (ClanMember x : clanMembersArr)
+                    {
+                        if (m.getTarget().contains(x.getUsername()))
+                        {
+                            tradeFix.add(m);
+                        }
+                    }
+                }
+            }
+            if (tradeFix.size() == 0)
+            {
+                return;
+            }
+            swapper.setEntries(tradeFix.toArray(new MenuEntry[tradeFix.size()]));
+        }
         if (config.getDigsite()) {
             if (target.toLowerCase().contains("Digsite pendant") || target.toLowerCase().contains("digsite pendant")) {
                 if(shiftModifier){

@@ -209,8 +209,8 @@ public interface EasySwapConfig extends Config {
 
     @ConfigItem(
             keyName = "Trade with",
-            name = "Hold shift to trade with players",
-            description = "Hold down shift to send a trade request to other players",
+            name = "Toggle shift to trade with players",
+            description = "Toggle shift to send a trade request to other players",
             position = 19
     )
 
