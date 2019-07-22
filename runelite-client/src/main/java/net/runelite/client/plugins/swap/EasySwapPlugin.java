@@ -21,14 +21,17 @@ import net.runelite.api.events.GameStateChanged;
 import static net.runelite.api.MenuAction.MENU_ACTION_DEPRIORITIZE_OFFSET;
 import static net.runelite.api.MenuAction.WALK;
 import net.runelite.api.MenuEntry;
-
 import javax.inject.Inject;
+import net.runelite.client.ui.overlay.tooltip.Tooltip;
+import net.runelite.client.ui.overlay.tooltip.TooltipManager;
+import javax.swing.ToolTipManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static net.runelite.api.ObjectID.PORTAL_4525;
+import org.apache.commons.lang3.StringUtils;
 
 @PluginDescriptor(
         name="EasySwap",
@@ -52,6 +55,9 @@ public class EasySwapPlugin extends Plugin {
     private boolean shiftModifier = false;
     @Inject
     private Client client;
+
+    @Inject
+    private TooltipManager toolTipManager;
 
     @Inject
     private EasySwapConfig config;
@@ -226,9 +232,46 @@ public class EasySwapPlugin extends Plugin {
             }
         }
 
-        if (config.getSwapEssencePouch()) {
-            if (option.equals("deposit-all") && target.contains("pouch")){
-                swapper.markForSwap("fill",option, target);
+        if (config.getSwapEssencePouch())
+        {
+            if (isEssencePouch(target))
+            {
+                Widget widgetBankTitleBar = client.getWidget(WidgetInfo.BANK_TITLE_BAR);
+                MenuEntry[] entries = swapper.getEntries();
+                List<MenuEntry> pouchfix = new ArrayList<>();
+                boolean empty = false;
+                for (MenuEntry m : entries)
+                {
+                    if (!m.getOption().contains("Deposit"))
+                    {
+                        pouchfix.add(m);
+                        if (m.getOption().contains("Empty"))
+                        {
+                            empty = true;
+                        }
+                    }
+                }
+                MenuEntry[] pouchfixArr = pouchfix.toArray(new MenuEntry[0]);
+
+                if ((widgetBankTitleBar == null || widgetBankTitleBar.getText().equals("")) && config.getSwapEssOutsideBank())
+                {
+                    swapper.markForSwap("Empty", option, target);
+                }
+                else
+                {
+                    if (pouchfixArr != null)
+                    {
+                        for (MenuEntry m : pouchfixArr)
+                        {
+                            m.setForceLeftClick(true);
+                        }
+                    }
+                    swapper.setEntries(pouchfixArr);
+                    toolTipManager.clear();
+                    toolTipManager.addFront(new Tooltip((empty == true ? "Empty " : "Fill ") + "<col=ff9040>" + StringUtils.capitalize(target)));
+                    //swapper.markForSwap("Fill", option, target);
+
+                }
             }
         }
         //--------------------------------------------------------------------------------------------------------//
