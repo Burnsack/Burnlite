@@ -241,7 +241,17 @@ public interface EasySwapConfig extends Config {
         return false;
     }
 
+    @ConfigItem(
+            keyName = "cancelTrades",
+            name = "Cancel Teleport",
+            description = "Stops teleports while in trade screen",
+            position = 22
+    )
 
+    default boolean cancelTrades()
+    {
+        return false;
+    }
 
     //----------------------------------------------Teleports----------------------------------------------------------//
 
@@ -250,7 +260,7 @@ public interface EasySwapConfig extends Config {
             keyName = "swapGamesNecklace",
             name = "Swap Games Necklace",
             description = "",
-            position = 22
+            position = 30
     )
     default boolean getGamesNecklace() {
         return false;
@@ -260,7 +270,7 @@ public interface EasySwapConfig extends Config {
             keyName = "gamesNecklaceMode",
             name = "Mode",
             description = "",
-            position = 23
+            position = 31
     )
 
     default GamesNecklaceMode getGamesNecklaceMode() {
@@ -270,7 +280,7 @@ public interface EasySwapConfig extends Config {
             keyName = "sgamesNecklaceMode",
             name = "Shift Mode",
             description = "",
-            position = 24
+            position = 32
     )
 
     default GamesNecklaceMode getSGamesNecklaceMode() {
@@ -281,7 +291,7 @@ public interface EasySwapConfig extends Config {
             keyName = "swapDuelingRing",
             name = "Swap Dueling Ring",
             description = "",
-            position = 25
+            position = 33
     )
 
     default boolean getDuelingRing() {
@@ -292,7 +302,7 @@ public interface EasySwapConfig extends Config {
             keyName = "duelingRingMode",
             name = "Mode",
             description = "",
-            position = 26
+            position = 34
     )
 
     default DuelingRingMode getDuelingRingMode() {
@@ -303,7 +313,7 @@ public interface EasySwapConfig extends Config {
             keyName = "shiftduelingRingMode",
             name = "Shift Mode",
             description = "",
-            position = 27
+            position = 35
     )
 
     default DuelingRingMode getSDuelingRingMode() {
@@ -314,7 +324,7 @@ public interface EasySwapConfig extends Config {
             keyName = "swapGlory",
             name = "Swap Glory",
             description = "",
-            position = 28
+            position = 36
     )
 
     default boolean getGlory() {
@@ -325,7 +335,7 @@ public interface EasySwapConfig extends Config {
             keyName = "gloryMode",
             name = "Mode",
             description = "",
-            position = 29
+            position = 37
     )
 
     default GloryMode getGloryMode() {
@@ -335,7 +345,7 @@ public interface EasySwapConfig extends Config {
             keyName = "sgloryMode",
             name = "Shift Mode",
             description = "",
-            position = 30
+            position = 38
     )
 
     default GloryMode getSGloryMode() {
@@ -346,7 +356,7 @@ public interface EasySwapConfig extends Config {
             keyName = "swapDigsite",
             name = "Swap Digsite pendant",
             description = "",
-            position = 31
+            position = 39
     )
 
     default boolean getDigsite() {
@@ -357,7 +367,7 @@ public interface EasySwapConfig extends Config {
             keyName = "digsiteMode",
             name = "Mode",
             description = "",
-            position = 32
+            position = 40
     )
 
     default DigsiteMode getDigsitemode() {
@@ -367,7 +377,7 @@ public interface EasySwapConfig extends Config {
             keyName = "sdigsiteMode",
             name = "Shift Mode",
             description = "",
-            position = 33
+            position = 41
     )
 
     default DigsiteMode getSDigsitemode() {
@@ -378,7 +388,7 @@ public interface EasySwapConfig extends Config {
             keyName = "Max capee",
             name = "Max cape",
             description = "",
-            position = 34
+            position = 42
     )
 
     default boolean getMaxcapee() {
@@ -389,7 +399,7 @@ public interface EasySwapConfig extends Config {
             keyName = "MaxcapeMode",
             name = "Mode",
             description = "",
-            position = 35
+            position = 43
     )
 
     default MaxcapeMode getMaxcapeMode() {
@@ -400,7 +410,7 @@ public interface EasySwapConfig extends Config {
             keyName = "SMaxcapeMode",
             name = "Shift Mode",
             description = "",
-            position = 36
+            position = 44
     )
 
     default MaxcapeMode getSMaxcapeMode() {

@@ -143,6 +143,9 @@ public class WidgetID
 	public static final int ITEMS_KEPT_ON_DEATH_GROUP_ID = 4;
 	public static final int SEED_VAULT_GROUP_ID = 631;
 	public static final int TRADE_SCREEN_GROUP_ID = 335;
+	public static final int FIRST_TRADE_SCREEN_GROUP_ID = 335;
+	public static final int SECOND_TRADE_SCREEN_GROUP_ID = 334;
+
 
 	static class WorldMap
 	{
@@ -827,11 +830,18 @@ public class WidgetID
         static final int TITLE_CONTAINER = 2;
     }
 
-    static class TradeScreen
-    {
-        static final int ACCEPT = 12;
-        static final int DECLINE = 15;
-        static final int TRADING_WITH = 31;
-        static final int TRADING_WITH_INVENTORY_SLOTS = 9;
-    }
+	static class FirstTradeScreen
+	{
+		static final int ACCEPT = 12;
+		static final int DECLINE = 15;
+		static final int TRADING_WITH = 31;
+		static final int TRADING_WITH_INVENTORY_SLOTS = 9;
+	}
+
+	static class SecondTradeScreen
+	{
+		static final int TITLE = 4;
+		static final int ACCEPT = 13;
+		static final int DECLINE = 14;
+	}
 }

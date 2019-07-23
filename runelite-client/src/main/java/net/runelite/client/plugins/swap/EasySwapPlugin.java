@@ -210,11 +210,25 @@ public class EasySwapPlugin extends Plugin {
             }
         }
 
-        if (config.getSwapCraftCape()) {
-            if ((target.equalsIgnoreCase("Crafting cape") ||  target.equalsIgnoreCase("Crafting cape(t)")) && option.equalsIgnoreCase("remove")) {
-                swapper.markForSwap("Teleport",option,target);
+        if (config.getSwapCraftCape())
+        {
+            if (config.cancelTrades() && (client.getWidget(WidgetInfo.SECOND_TRADING_WITH_TITLE_CONTAINER) != null && client.getWidget(WidgetInfo.SECOND_TRADING_WITH_TITLE_CONTAINER).getText().equals("Waiting for other player...")))
+            {
+                MenuEntry[] entries = swapper.getEntries();
+                for (MenuEntry m : entries)
+                {
+                    if (m.getTarget() == "")
+                    {
+                        swapper.setEntries(new MenuEntry[]{m});
+                    }
+                }
+            }
+            else if ((target.equalsIgnoreCase("Crafting cape") || target.equalsIgnoreCase("Crafting cape(t)")) && option.equalsIgnoreCase("remove"))
+            {
+                swapper.markForSwap("Teleport", option, target);
             }
         }
+
 
         if (config.getSwapEss()) {
             if (option.equalsIgnoreCase("Offer") && target.equalsIgnoreCase("pure essence")){
@@ -298,11 +312,27 @@ public class EasySwapPlugin extends Plugin {
             }
         }
 
-        if (config.getGlory()) {
-            if (target.toLowerCase().contains("amulet of glory") || target.toLowerCase().contains("amulet of eternal glory")) {
-                if(shiftModifier){
+        if (config.getGlory())
+        {
+            if (config.cancelTrades() && (client.getWidget(WidgetInfo.SECOND_TRADING_WITH_TITLE_CONTAINER) != null && client.getWidget(WidgetInfo.SECOND_TRADING_WITH_TITLE_CONTAINER).getText().equals("Waiting for other player...")))
+            {
+                MenuEntry[] entries = swapper.getEntries();
+                for (MenuEntry m : entries)
+                {
+                    if (m.getTarget() == "")
+                    {
+                        swapper.setEntries(new MenuEntry[]{m});
+                    }
+                }
+            }
+            else if (target.toLowerCase().contains("amulet of glory") || target.toLowerCase().contains("amulet of eternal glory"))
+            {
+                if (shiftModifier)
+                {
                     swapper.markForSwap(config.getSGloryMode().toString(), option, target);
-                }else{
+                }
+                else
+                {
                     swapper.markForSwap(config.getGloryMode().toString(), option, target);
                 }
 
