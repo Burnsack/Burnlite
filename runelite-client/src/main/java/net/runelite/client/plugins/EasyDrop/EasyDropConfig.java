@@ -50,15 +50,4 @@ public interface EasyDropConfig extends Config {
     default String getNameDrop() {
         return "";
     }
-
-    @ConfigItem(
-            keyName = "Const",
-            name = "Left click const",
-            description = "NotLikeBlob",
-            position = 4
-    )
-
-    default boolean getConst() {
-        return false;
-    }
 }

@@ -95,15 +95,6 @@ public class EasyDropPlugin extends Plugin {
                 }
             }
         }
-        if (config.getConst()) {
-            for (String item : config.getNameDrop().split(",")) {
-                item = item.trim();
-                if (target.equalsIgnoreCase(item)) {
-                    swapper.markForSwap("Build", option, target);
-                    swapper.markForSwap("Repair", option, target);
-                }
-            }
-        }
 
         swapper.startSwap();
         client.setMenuEntries(swapper.getEntries());
